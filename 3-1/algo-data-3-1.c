@@ -7,7 +7,7 @@ int main(void)
 {
 	IntStack s;
 
-	if (Initialize(&s, 64) == -1)
+	if (Initialize(&s, 10000) == -1)
 	{
 		puts("error!");
 		return 1;
