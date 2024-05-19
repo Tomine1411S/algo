@@ -1,4 +1,4 @@
-// intŒ^ƒXƒ^ƒbƒNIntStack‚Ì—˜—p—á
+// intï¿½^ï¿½Xï¿½^ï¿½bï¿½NIntStackï¿½Ì—ï¿½ï¿½pï¿½ï¿½
 
 #include <stdio.h>
 #include "IntStack.h"
@@ -7,45 +7,96 @@ int main(void)
 {
 	IntStack s;
 
-	if (Initialize(&s, 64) == -1) {
-		puts("ƒXƒ^ƒbƒN‚Ì¶¬‚É¸”s‚µ‚Ü‚µ‚½B");
+	if (Initialize(&s, 64) == -1)
+	{
+		puts("error!");
 		return 1;
 	}
 
-	while (1) {
-		int menu, x;
+	int menu, x;
 
-		printf("Œ»İ‚Ìƒf[ƒ^”F%d / %d\n", Size(&s), Capacity(&s));
-		printf("(1)ƒvƒbƒVƒ…  (2)ƒ|ƒbƒv@(3)ƒs[ƒN@(4)•\¦@(0) I—¹F");
+	
+
+	for (int i = 0; i < 1; i++)
+	{
 		scanf("%d", &menu);
 
-		if (menu == 0) break;
-
-		switch (menu) {
-		 case 1: /*--- ƒvƒbƒVƒ… ---*/
-				 printf("ƒf[ƒ^F");
-				 scanf("%d", &x);
-				 if (Push(&s, x) == -1)
-					puts("\aƒGƒ‰|FƒvƒbƒVƒ…‚É¸”s‚µ‚Ü‚µ‚½B");
-				 break;
-
-		 case 2: /*--- ƒ|ƒbƒv ---*/
-				 if (Pop(&s, &x) == -1)
-					puts("\aƒGƒ‰|Fƒ|ƒbƒv‚É¸”s‚µ‚Ü‚µ‚½B");
-				 else
-					printf("ƒ|ƒbƒv‚µ‚½ƒf[ƒ^‚Í%d‚Å‚·B\n", x);
-				 break;
-
-		 case 3: /*--- ƒs[ƒN ---*/
-				 if (Peek(&s, &x) == -1)
-					puts("\aƒGƒ‰|Fƒs[ƒN‚É¸”s‚µ‚Ü‚µ‚½B");
-				 else
-					printf("ƒs[ƒN‚µ‚½ƒf[ƒ^‚Í%d‚Å‚·B\n", x);
-				 break;
-
-		 case 4: /*--- •\¦ ---*/
-				 Print(&s);
-				 break;
+		if (menu == 1)
+		{ /*--- push ---*/
+			scanf("%d", &x);
+			if (Push(&s, x) == -1)
+			{
+				puts("push failed");
+			}
+			else
+			{
+				printf("%d", x);
+			}
+			menu = -1;
+		}
+		else if (menu == 2)
+		{ /*--- pop ---*/
+			if (Pop(&s, &x) == -1)
+			{
+				puts("pop failed");
+			}
+			else
+			{
+				printf("%d\n", x);
+			}
+			menu = -1;
+		}
+		else if (menu == 3)
+		{ /*---  peek  ---*/
+			if (Peek(&s, &x) == -1)
+			{
+				puts("peek failed");
+			}
+			else
+			{
+				printf("%d\n", x);
+			}
+			menu = -1;
+		}
+		else if (menu == 4)
+		{ /*--- show ---*/
+			Print(&s);
+			menu = -1;
+		}
+		else if (menu == 5)
+		{
+			Clear(&s);
+			printf("%d", Size(&s));
+			menu = -1;
+		}
+		else if (menu == 6)
+		{
+			printf("%d", Capacity(&s));
+			menu = -1;
+		}
+		else if (menu == 7)
+		{
+			printf("%d", Size(&s));
+			menu = -1;
+		}
+		else if (menu == 8)
+		{
+			printf("%d", IsEmpty(&s));
+			menu = -1;
+		}
+		else if (menu == 9)
+		{
+			printf("%d", IsFull(&s));
+			menu = -1;
+		}
+		else if (menu == 10)
+		{
+			printf("%d", Search(&s, x));
+			menu = -1;
+		}
+		else if (menu < 11 || menu > 0)
+		{
+			i = 1;
 		}
 	}
 
