@@ -5,8 +5,14 @@
 #include "BinTree.h"
 
 /*--- ???j???[ ---*/
-typedef enum {
-	TERMINATE, ADD, REMOVE, SEARCH, PRINT
+typedef enum
+{
+	SEARCH,
+	ADD,
+	REMOVE,
+	PRINT,
+	TERMINATE
+
 } Menu;
 
 /*--- ???j???[?I?? ---*/
@@ -14,50 +20,68 @@ Menu SelectMenu(void)
 {
 	int ch;
 
-	do {
+	do
+	{
 		printf("\n");
 		scanf("%d", &ch);
-	} while (ch < TERMINATE || ch > PRINT);
+		if (ch == 6){
+			break;
+		}
+	} while (ch < SEARCH || ch > TERMINATE);
 	return (Menu)ch;
 }
 
 /*--- ???C????? ---*/
 int main(void)
 {
-	Menu    menu;
-	BinNode *root = NULL;		// ?Q???T?????????|?C???^
+	Menu menu;
+	BinNode *root = NULL; // ?Q???T?????????|?C???^
+	int terminate_flag = 0;
 
-	do {
+	while (terminate_flag == 1)
+	{
 		Member x;
 		BinNode *temp;
+		menu = SelectMenu();
+		if (menu == TERMINATE)
+		{
+			terminate_flag = 1;
+		}
+		else
+		{
 
-		switch (menu = SelectMenu()) {
-		 /*--- ?m?[?h??}?? ---*/
-		 case ADD :
+			if (menu == ADD)
+			{
 				x = ScanMember("?}??", MEMBER_NO | MEMBER_NAME);
 				root = Add(root, &x);
 				break;
-
-		 /*--- ?m?[?h??? ---*/
-		 case REMOVE :
+			}
+			/*--- ?m?[?h??? ---*/
+			else if (menu == REMOVE)
+			{
 				x = ScanMember("??", MEMBER_NO);
 				Remove(&root, &x);
 				break;
 
-		 /*--- ?m?[?h??T?? ---*/
-		 case SEARCH :
+				/*--- ?m?[?h??T?? ---*/
+			}
+			else if (menu == SEARCH)
+			{
 				x = ScanMember("?T??", MEMBER_NO);
 				if ((temp = Search(root, &x)) != NULL)
 					PrintLnMember(&temp->data);
 				break;
 
-		 /*--- ?S?m?[?h??\?? ---*/
-		 case PRINT :
+				/*--- ?S?m?[?h??\?? ---*/
+			}
+			else if (menu == PRINT)
+			{
 				puts("");
 				PrintTree(root);
 				break;
+			}
 		}
-	} while (menu != TERMINATE);
+	};
 
 	FreeTree(root);
 
