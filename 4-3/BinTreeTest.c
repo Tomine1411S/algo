@@ -11,23 +11,24 @@ typedef enum
 	ADD,
 	REMOVE,
 	PRINT,
-	TERMINATE
+	TERMINATE,
+	STOP
 
 } Menu;
 
 /*--- ???j???[?I?? ---*/
 Menu SelectMenu(void)
 {
-	int ch;
+	int ch = 10;
 
-	do
+	while(ch < SEARCH || ch > TERMINATE)
 	{
 		printf("\n");
 		scanf("%d", &ch);
-		if (ch == 6){
+		if (ch == STOP){
 			break;
 		}
-	} while (ch < SEARCH || ch > TERMINATE);
+	};
 	return (Menu)ch;
 }
 
